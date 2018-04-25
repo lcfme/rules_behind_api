@@ -25,6 +25,5 @@
     },
     function(exports, module, require) {
         exports.msg = 'ok';
-
     }
 ]);
