@@ -1,22 +1,30 @@
-(function(moduleArr) {
+!(function(moduleArr) {
     var rootModule = {};
-    function Loader (moduleId = 0) {
-        var o = {
-            exports: {},
-        };
-        moduleArr[moduleId](o.exports, o, Loader);
-        rootModule[moduleId] = o;
-        return o.exports;
+    function __require__(id) {
+        if (!rootModule[id]) {
+            var module = {};
+            module.id = id;
+            module.exports = {};
+            moduleArr[id](module.exports, module, __require__);
+            rootModule[id] = module;
+            return module.exports;
+        } else {
+            return rootModule[id].exports;
+        }
     }
-    Loader();
+    __require__(0);
 })([
-    function (exports, module, require) {
-        console.log(0);
+    function(exports, module, require) {
         var a = require(1);
-        console.log(a, 'bingo');
+        var b = require(2);
+        console.log(a);
+        console.log(b);
     },
-    function (exports, module, require) {
-        console.log(1);
-        exports.k = 1;
+    function(exports, module, require) {
+        module.exports = 'ok';
+    },
+    function(exports, module, require) {
+        exports.msg = 'ok';
+
     }
 ]);
