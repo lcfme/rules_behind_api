@@ -1,4 +1,4 @@
-!(function(moduleArr) {
+(function main (moduleArr) {
     var rootModule = {};
     function __require__(id) {
         if (!rootModule[id]) {
@@ -13,6 +13,7 @@
         }
     }
     __require__(0);
+    return 0;
 })([
     function(exports, module, require) {
         var a = require(1);
